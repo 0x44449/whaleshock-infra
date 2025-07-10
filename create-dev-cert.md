@@ -21,24 +21,6 @@ mkcert -install
 # 개발용 도메인 인증서 만들기
 개발용 도메인 (ex: arena-dev.com)
 ```ps
-# 도메인별 디렉터리 생성 (docker volume 구조와 동일하게)
-mkdir .\letsencrypt\live\arena-dev.com
-
-# mkcert 로 인증서·키 생성
-mkcert `
-  -key-file ".\letsencrypt\live\arena-dev.com\privkey.pem" `
-  -cert-file ".\letsencrypt\live\arena-dev.com\fullchain.pem" `
-  arena-dev.com
-```
-위 명령으로
-
-- privkey.pem → 비밀키
-- fullchain.pem → 루트 CA까지 묶은 인증서
-
-가 infra\letsencrypt\live\arena-dev.com 에 만들어집니다.
-
-만약 *.arena-dev.com과 같은 와일드카드 인증서를 생성하려면 다음과 같이 수행합니다.
-```ps
 mkdir .\letsencrypt\live\arena-dev.com
 
 mkcert `
@@ -46,15 +28,9 @@ mkcert `
   -cert-file ".\letsencrypt\live\arena-dev.com\fullchain.pem" `
   "*.arena-dev.com" "arena-dev.com"
 ```
+위 명령으로
 
-nginx의 구성 설정을 다음과 같이 구성 가능합니다.
-```nginx
-server {
-    listen 443 ssl http2;
-    server_name arena-dev.com *.arena-dev.com;
+- privkey.pem → 비밀키
+- fullchain.pem → 루트 CA까지 묶은 인증서
 
-    ssl_certificate     /etc/letsencrypt/live/arena-dev.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/arena-dev.com/privkey.pem;
-    …
-}
-```
+가 infra\letsencrypt\live\arena-dev.com 에 만들어집니다.

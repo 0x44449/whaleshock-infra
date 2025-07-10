@@ -1,0 +1,13 @@
+services:
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./dev/nginx/nginx.conf:/etc/nginx/nginx.conf
+  dns:
+    image: jpillora/dnsmasq:latest
+    container_name: local-dns
+    restart: unless-stopped
+    ports:
+      - "53:53/udp"
+    volumes:
+      - ./dev/dns/dnsmasq.conf:/etc/dnsmasq.conf

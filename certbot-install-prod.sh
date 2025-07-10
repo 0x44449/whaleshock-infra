@@ -1,0 +1,1 @@
+docker-compose run --rm certbot certonly --webroot -w /var/www/certbot -d whaleshock.com -d www.whaleshock.com --email 0x44449@gmail.com --agree-tos

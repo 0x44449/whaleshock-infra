@@ -1,7 +1,7 @@
 services:
   nginx:
-    image: nginx:stable-alpine
-    container_name: reverse-proxy
+    image: nginx:latest
+    container_name: whaleshock-reverse-proxy
     restart: unless-stopped
     ports:
       - "80:80"

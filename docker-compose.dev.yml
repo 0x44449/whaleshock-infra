@@ -1,11 +1,11 @@
 services:
   nginx:
-    image: nginx:stable-alpine
+    image: nginx:latest
     volumes:
       - ./dev/nginx/nginx.conf:/etc/nginx/nginx.conf
   dns:
     image: jpillora/dnsmasq:latest
-    container_name: local-dns
+    container_name: whaleshock-dev-dns
     restart: unless-stopped
     ports:
       - "53:53/udp"
